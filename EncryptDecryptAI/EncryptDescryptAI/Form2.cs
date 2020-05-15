@@ -15,6 +15,7 @@ namespace EncryptDescryptAI
         public event ApplyConfig ApplyConfigEvent;
         private readonly AIModes _currentMode;
         private readonly IEnumerable<ItemConfig> _itemConfigs;
+        private bool _isEnable = false;
         public Form2(AIModes _mode, IEnumerable<ItemConfig> itemConfigs)
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace EncryptDescryptAI
         }
         private void ShowLegend()
         {
+            #region txt legend
             var txtTypeCode = @"
 /*
 * Ta sử dụng enum TypeCode để đánh dấu kiểu dữ liệu của config:
@@ -48,9 +50,10 @@ vd: [
     ]
 */
 ";
+            #endregion
             txtTypeCodeLegend.Text = txtTypeCode;
 
-
+            #region txt legend
             var txtLengend = @"""Key"": ""<key>"",// Trường Key của config-trường key luôn là kiểu string
 ""Value"": <value>,//Giá trị của config, có thể là kiểu int, double, decimal, boolean.
 //Ngoài ra, với 1 số config phức tạp, giá trị của config sẽ là 1 object hoặc arrayobject thì trường này sẽ
@@ -60,6 +63,7 @@ vd: [
 ""ConfigValueType"": <config-value-type>,// NONE = 0,STRING=1,OBJECT=2,ARRAY=3
 ""TypeCode"": <type-code>,// xem thêm chú thích về TypeCode
 ""IsFlagDecrypt"": <is-flag-decrypt>//Đánh dấu object config này có được mã hóa hay không?";
+            #endregion
 
             txtLegend.Text = txtLengend;
         }
@@ -75,7 +79,9 @@ vd: [
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            this.txtConfigText.Enabled = !this.txtConfigText.Enabled;
+            _isEnable = !_isEnable;
+            this.txtConfigText.Enabled = _isEnable;
+            this.btnApply.Enabled = _isEnable;
         }
 
         private void btnApply_Click(object sender, EventArgs e)

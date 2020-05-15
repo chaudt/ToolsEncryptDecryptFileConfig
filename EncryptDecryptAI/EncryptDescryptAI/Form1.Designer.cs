@@ -43,8 +43,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDescrypt = new System.Windows.Forms.Button();
             this.btnEncrypt = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.btnNodeConfigEncrypted = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrypted)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -58,7 +58,7 @@
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(721, 10);
+            this.btnBrowse.Location = new System.Drawing.Point(721, 12);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 1;
@@ -75,7 +75,7 @@
             this.cmbSecurityKey.Location = new System.Drawing.Point(22, 59);
             this.cmbSecurityKey.Name = "cmbSecurityKey";
             this.cmbSecurityKey.Size = new System.Drawing.Size(471, 21);
-            this.cmbSecurityKey.TabIndex = 2;
+            this.cmbSecurityKey.TabIndex = 1;
             this.cmbSecurityKey.SelectedIndexChanged += new System.EventHandler(this.cmbSecurityKey_SelectedIndexChanged);
             // 
             // label1
@@ -97,7 +97,7 @@
             this.txtSecurityKey.Location = new System.Drawing.Point(527, 59);
             this.txtSecurityKey.Name = "txtSecurityKey";
             this.txtSecurityKey.Size = new System.Drawing.Size(269, 20);
-            this.txtSecurityKey.TabIndex = 4;
+            this.txtSecurityKey.TabIndex = 2;
             // 
             // txtDescrypted
             // 
@@ -219,7 +219,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.btnNodeConfigEncrypted);
-            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.btnEncrypt);
             this.panel2.Controls.Add(this.btnDescrypt);
             this.panel2.Location = new System.Drawing.Point(2, 105);
@@ -232,38 +231,31 @@
             this.btnDescrypt.Location = new System.Drawing.Point(277, 7);
             this.btnDescrypt.Name = "btnDescrypt";
             this.btnDescrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnDescrypt.TabIndex = 0;
+            this.btnDescrypt.TabIndex = 3;
             this.btnDescrypt.Text = "Descrypt>>";
             this.btnDescrypt.UseVisualStyleBackColor = true;
             this.btnDescrypt.Click += new System.EventHandler(this.btnDescrypt_Click);
             // 
             // btnEncrypt
             // 
+            this.btnEncrypt.Enabled = false;
             this.btnEncrypt.Location = new System.Drawing.Point(358, 7);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 0;
+            this.btnEncrypt.TabIndex = 5;
             this.btnEncrypt.Text = "<<Encrypt";
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(439, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "button1";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // btnNodeConfigEncrypted
             // 
             this.btnNodeConfigEncrypted.Enabled = false;
-            this.btnNodeConfigEncrypted.Location = new System.Drawing.Point(520, 7);
+            this.btnNodeConfigEncrypted.Location = new System.Drawing.Point(439, 7);
             this.btnNodeConfigEncrypted.Name = "btnNodeConfigEncrypted";
             this.btnNodeConfigEncrypted.Size = new System.Drawing.Size(108, 23);
-            this.btnNodeConfigEncrypted.TabIndex = 0;
+            this.btnNodeConfigEncrypted.TabIndex = 4;
             this.btnNodeConfigEncrypted.Text = "Node Encrypted";
+            this.toolTip1.SetToolTip(this.btnNodeConfigEncrypted, "Thay đổi nội dung của file config");
             this.btnNodeConfigEncrypted.UseVisualStyleBackColor = true;
             this.btnNodeConfigEncrypted.Click += new System.EventHandler(this.btnNodeConfigEncrypted_Click);
             // 
@@ -305,9 +297,9 @@
         private FastColoredTextBoxNS.FastColoredTextBox txtEncrypted;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnNodeConfigEncrypted;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.Button btnDescrypt;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

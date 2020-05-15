@@ -94,6 +94,10 @@ namespace EncryptDescryptAI
             {
                 case AIModes.DECRYPT:
                     _decryptAI.ApplyConfig(json);
+                    // cập nhật lại json
+                    txtEncrypted.Text = _decryptAI.Json;
+                    // Cho phép chuyển nội dung config sang nội dung mã hóa
+                    this.btnEncrypt.Enabled = true;
                     break;
                 case AIModes.ENDCRYPT:
                     _encryptAI.ApplyConfig(json);

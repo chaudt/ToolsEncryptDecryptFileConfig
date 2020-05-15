@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,13 +21,15 @@ namespace EncryptDescryptAI
     public class ItemArrayConfig
     {
         public IEnumerable<ItemConfig> ValueItems { get; private set; }
-        public ItemArrayConfig(IEnumerable<ItemConfig> items)
+        [JsonConstructor]
+        public ItemArrayConfig(IEnumerable<ItemConfig> valueItems)
         {
-            this.ValueItems = items;
+            this.ValueItems = valueItems;
         }
     }
     public class ItemConfig
     {
+        #region Attributes
         /// <summary>
         /// Key của config
         /// </summary>
@@ -35,12 +38,34 @@ namespace EncryptDescryptAI
         /// Giá trị kiểu string của config
         /// </summary>
         public string Value { get; private set; }
-
         /// <summary>
         /// Giá trị kiểu object của config
         /// </summary>
         public IEnumerable<ItemConfig> ValueItems { get; private set; }
         public IEnumerable<ItemArrayConfig> ValueArrayItems { get; private set; }
+        public TypeCode TypeCode { get; private set; }
+        /// <summary>
+        /// Cờ đánh dấu trường này có được mã hóa hay không?
+        /// </summary>
+        public bool IsFlagDecrypt { get; private set; }
+        #endregion
+
+        [JsonConstructor]
+        public ItemConfig(string key,
+            string value,
+            IEnumerable<ItemConfig> valueItems,
+            IEnumerable<ItemArrayConfig> valueArrayItems,
+            TypeCode typeCode,
+            bool isFlagDecrypt)
+        {
+            this.Key = key;
+            this.Value = value;
+            this.ValueItems = valueItems;
+            this.ValueArrayItems = valueArrayItems;
+            this.TypeCode = typeCode;
+            this.IsFlagDecrypt = isFlagDecrypt;
+        }
+        #region Properties
         public ConfigValueTypes ConfigValueType
         {
             get
@@ -52,11 +77,9 @@ namespace EncryptDescryptAI
                 return ConfigValueTypes.STRING;
             }
         }
-        public TypeCode TypeCode { get; private set; }
-        /// <summary>
-        /// Cờ đánh dấu trường này có được mã hóa hay không?
-        /// </summary>
-        public bool IsFlagDecrypt { get; private set; }
+        #endregion
+
+        #region Methods
         public void SetDecrypt(string valDecrypt)
         {
             this.IsFlagDecrypt = true;
@@ -106,6 +129,9 @@ namespace EncryptDescryptAI
             this.IsFlagDecrypt = false;
             this.TypeCode = type;
         }
+        #endregion
+
+        #region Method Supports
         internal void TryDecrypt(string secureKey)
         {
             var item = Decrypt(this, secureKey, true);
@@ -157,9 +183,17 @@ namespace EncryptDescryptAI
                     break;
                 case ConfigValueTypes.OBJECT:
                     var res = new List<ItemConfig>();
+                    var primaryKey = secureKey;
+                    if (isFirstLoop)
+                    {
+                        primaryKey = FindKey(item.Key, secureKey, isFirstLoop);
+                        isFirstLoop = false;
+                    }
+
                     foreach (var itemCf in item.ValueItems)
                     {
-                        key = FindKey(item.Key + ":" + itemCf.Key, secureKey, isFirstLoop);
+                        //item.Key + ":" +
+                        key = FindKey(itemCf.Key, primaryKey, isFirstLoop);
                         // những lần sau thì mặc định isFirstLoop=false để chỉ dùng format <pathKey>:<key>,
                         // với pathKey là key được cộng dồn cho tới thời điểm hiện tại
                         res.Add(Decrypt(itemCf, key));
@@ -230,7 +264,7 @@ namespace EncryptDescryptAI
                         var tmpItemConfigs = new List<ItemConfig>();
                         foreach (var itemCf in itemArray.ValueItems)
                         {
-                           var key = FindKey(itemCf.Key, secureKey, isFirstLoop);
+                            var key = FindKey(itemCf.Key, secureKey, isFirstLoop);
                             tmpItemConfigs.Add(Encrypt(itemCf, key));
                         }
 
@@ -254,6 +288,8 @@ namespace EncryptDescryptAI
 
             return $"{secureKey}:{key}";
         }
+        #endregion
+
     }
 
 

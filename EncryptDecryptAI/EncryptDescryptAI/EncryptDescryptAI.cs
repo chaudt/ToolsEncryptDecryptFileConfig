@@ -13,7 +13,7 @@ namespace EncryptDescryptAI
     public class DecryptAI : IDecryptEncryptAI
     {
         private readonly string _secureKey;
-        private readonly IEnumerable<ItemConfig> _itemConfigs;
+        private IEnumerable<ItemConfig> _itemConfigs;
         private IEnumerable<ItemConfig> _itemConfigsDescrypt;
         private string _json;
         public string Json
@@ -162,7 +162,10 @@ namespace EncryptDescryptAI
 
         public void ApplyConfig(string json)
         {
-            throw new NotImplementedException();
+            // Cập nhật lại đối tượng _itemConfigs
+            _itemConfigs = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<ItemConfig>>(json);
+            Decrypt();
+            ToJson();
         }
 
         #region Dispose
@@ -390,7 +393,8 @@ namespace EncryptDescryptAI
 
         public void ApplyConfig(string json)
         {
-            throw new NotImplementedException();
+            _itemConfigs = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<ItemConfig>>(json);
+            ToJson();
         }
     }
 }
