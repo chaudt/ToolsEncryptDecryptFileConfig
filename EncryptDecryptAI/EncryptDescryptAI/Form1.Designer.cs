@@ -36,22 +36,23 @@
             this.txtSecurityKey = new System.Windows.Forms.TextBox();
             this.txtDescrypted = new FastColoredTextBoxNS.FastColoredTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtEncrypted = new FastColoredTextBoxNS.FastColoredTextBox();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtEncrypted = new FastColoredTextBoxNS.FastColoredTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDescrypt = new System.Windows.Forms.Button();
-            this.btnEncrypt = new System.Windows.Forms.Button();
             this.btnNodeConfigEncrypted = new System.Windows.Forms.Button();
+            this.btnEncrypt = new System.Windows.Forms.Button();
+            this.btnDescrypt = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrypted)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEncrypted)).BeginInit();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,22 +113,28 @@
         '\"',
         '\'',
         '\''};
+            this.txtDescrypted.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
+    "?<range>:)\\s*(?<range>[^;]+);\n";
             this.txtDescrypted.AutoScrollMinSize = new System.Drawing.Size(155, 14);
             this.txtDescrypted.BackBrush = null;
+            this.txtDescrypted.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
             this.txtDescrypted.CharHeight = 14;
             this.txtDescrypted.CharWidth = 8;
             this.txtDescrypted.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtDescrypted.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.txtDescrypted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescrypted.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtDescrypted.IsReplaceMode = false;
             this.txtDescrypted.Language = FastColoredTextBoxNS.Language.CSharp;
+            this.txtDescrypted.LeftBracket = '(';
+            this.txtDescrypted.LeftBracket2 = '{';
             this.txtDescrypted.Location = new System.Drawing.Point(0, 0);
             this.txtDescrypted.Name = "txtDescrypted";
             this.txtDescrypted.Paddings = new System.Windows.Forms.Padding(0);
+            this.txtDescrypted.RightBracket = ')';
+            this.txtDescrypted.RightBracket2 = '}';
             this.txtDescrypted.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.txtDescrypted.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtDescrypted.ServiceColors")));
-            this.txtDescrypted.Size = new System.Drawing.Size(391, 287);
+            this.txtDescrypted.Size = new System.Drawing.Size(390, 287);
             this.txtDescrypted.TabIndex = 5;
             this.txtDescrypted.Text = "{\"name\":\"value\"}";
             this.txtDescrypted.Zoom = 100;
@@ -148,8 +155,48 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtEncrypted);
             this.splitContainer1.Size = new System.Drawing.Size(799, 287);
-            this.splitContainer1.SplitterDistance = 391;
+            this.splitContainer1.SplitterDistance = 390;
             this.splitContainer1.TabIndex = 6;
+            // 
+            // txtEncrypted
+            // 
+            this.txtEncrypted.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.txtEncrypted.AutoIndentCharsPatterns = "\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\n^\\s*(case|default)\\s*[^:]*(" +
+    "?<range>:)\\s*(?<range>[^;]+);\n";
+            this.txtEncrypted.AutoScrollMinSize = new System.Drawing.Size(155, 14);
+            this.txtEncrypted.BackBrush = null;
+            this.txtEncrypted.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+            this.txtEncrypted.CharHeight = 14;
+            this.txtEncrypted.CharWidth = 8;
+            this.txtEncrypted.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEncrypted.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.txtEncrypted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEncrypted.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.txtEncrypted.IsReplaceMode = false;
+            this.txtEncrypted.Language = FastColoredTextBoxNS.Language.CSharp;
+            this.txtEncrypted.LeftBracket = '(';
+            this.txtEncrypted.LeftBracket2 = '{';
+            this.txtEncrypted.Location = new System.Drawing.Point(0, 0);
+            this.txtEncrypted.Name = "txtEncrypted";
+            this.txtEncrypted.Paddings = new System.Windows.Forms.Padding(0);
+            this.txtEncrypted.RightBracket = ')';
+            this.txtEncrypted.RightBracket2 = '}';
+            this.txtEncrypted.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.txtEncrypted.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtEncrypted.ServiceColors")));
+            this.txtEncrypted.Size = new System.Drawing.Size(405, 287);
+            this.txtEncrypted.TabIndex = 5;
+            this.txtEncrypted.Text = "{\"name\":\"value\"}";
+            this.txtEncrypted.Zoom = 100;
             // 
             // txtBrowse
             // 
@@ -184,40 +231,9 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Security Key";
             // 
-            // txtEncrypted
-            // 
-            this.txtEncrypted.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.txtEncrypted.AutoScrollMinSize = new System.Drawing.Size(155, 14);
-            this.txtEncrypted.BackBrush = null;
-            this.txtEncrypted.CharHeight = 14;
-            this.txtEncrypted.CharWidth = 8;
-            this.txtEncrypted.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEncrypted.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.txtEncrypted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEncrypted.IsReplaceMode = false;
-            this.txtEncrypted.Language = FastColoredTextBoxNS.Language.CSharp;
-            this.txtEncrypted.Location = new System.Drawing.Point(0, 0);
-            this.txtEncrypted.Name = "txtEncrypted";
-            this.txtEncrypted.Paddings = new System.Windows.Forms.Padding(0);
-            this.txtEncrypted.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.txtEncrypted.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtEncrypted.ServiceColors")));
-            this.txtEncrypted.Size = new System.Drawing.Size(404, 287);
-            this.txtEncrypted.TabIndex = 5;
-            this.txtEncrypted.Text = "{\"name\":\"value\"}";
-            this.txtEncrypted.Zoom = 100;
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnNodeConfigEncrypted);
             this.panel2.Controls.Add(this.btnEncrypt);
             this.panel2.Controls.Add(this.btnDescrypt);
@@ -226,29 +242,11 @@
             this.panel2.Size = new System.Drawing.Size(799, 47);
             this.panel2.TabIndex = 7;
             // 
-            // btnDescrypt
-            // 
-            this.btnDescrypt.Location = new System.Drawing.Point(277, 7);
-            this.btnDescrypt.Name = "btnDescrypt";
-            this.btnDescrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnDescrypt.TabIndex = 3;
-            this.btnDescrypt.Text = "Descrypt>>";
-            this.btnDescrypt.UseVisualStyleBackColor = true;
-            this.btnDescrypt.Click += new System.EventHandler(this.btnDescrypt_Click);
-            // 
-            // btnEncrypt
-            // 
-            this.btnEncrypt.Enabled = false;
-            this.btnEncrypt.Location = new System.Drawing.Point(358, 7);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 5;
-            this.btnEncrypt.Text = "<<Encrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
-            // 
             // btnNodeConfigEncrypted
             // 
+            this.btnNodeConfigEncrypted.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNodeConfigEncrypted.Enabled = false;
             this.btnNodeConfigEncrypted.Location = new System.Drawing.Point(439, 7);
             this.btnNodeConfigEncrypted.Name = "btnNodeConfigEncrypted";
@@ -258,6 +256,42 @@
             this.toolTip1.SetToolTip(this.btnNodeConfigEncrypted, "Thay đổi nội dung của file config");
             this.btnNodeConfigEncrypted.UseVisualStyleBackColor = true;
             this.btnNodeConfigEncrypted.Click += new System.EventHandler(this.btnNodeConfigEncrypted_Click);
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEncrypt.Enabled = false;
+            this.btnEncrypt.Location = new System.Drawing.Point(358, 7);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 5;
+            this.btnEncrypt.Text = "<<Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
+            // btnDescrypt
+            // 
+            this.btnDescrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDescrypt.Location = new System.Drawing.Point(277, 7);
+            this.btnDescrypt.Name = "btnDescrypt";
+            this.btnDescrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnDescrypt.TabIndex = 3;
+            this.btnDescrypt.Text = "Descrypt>>";
+            this.btnDescrypt.UseVisualStyleBackColor = true;
+            this.btnDescrypt.Click += new System.EventHandler(this.btnDescrypt_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "product of chaudt@saigonnewport";
             // 
             // Form1
             // 
@@ -276,10 +310,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtEncrypted)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEncrypted)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,6 +335,7 @@
         private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.Button btnDescrypt;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
