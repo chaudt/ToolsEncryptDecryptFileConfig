@@ -98,6 +98,7 @@ namespace EncryptDescryptAI
                     txtEncrypted.Text = _decryptAI.Json;
                     // Cho phép chuyển nội dung config sang nội dung mã hóa
                     this.btnEncrypt.Enabled = true;
+                    this.txtSecurityKey.Enabled = true;
                     break;
                 case AIModes.ENDCRYPT:
                     _encryptAI.ApplyConfig(json);
